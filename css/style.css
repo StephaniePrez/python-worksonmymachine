@@ -1,0 +1,12 @@
+:root {
+  --primary: blue;
+  --light: white;
+  --grey: #ffffffe8;
+}
+
+body {
+  overflow: hidden;
+  /*font-family: ; a agregar */
+  font-weight: 300;
+  color: var(--primary);
+}
