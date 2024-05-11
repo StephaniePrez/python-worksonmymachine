@@ -1,0 +1,47 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content */
+main {
+    background-image: url('../img/bg.jpg');
+    background-repeat: repeat-x;
+    /* max-width: 1900px; */
+}
+
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+/* Statics section */
+
+.logo-afa {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    padding-top: 40px;
+}
+
+.trofeos-title {
+    margin-bottom: 20px; 
+    width: 100%;
+    text-align: center;
+    color: #D0B47D;
+}
+
+.escudo {
+    width: 30px;
+}
+
+th {
+    background-color: #92C1F2 !important;
+    color:white !important;
+}
+
+td {
+    background-color: #DCF1F7 !important;
+}
