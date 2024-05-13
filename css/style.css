@@ -5,8 +5,47 @@
 }
 
 body {
-  overflow: hidden;
   /*font-family: ; a agregar */
   font-weight: 300;
   color: var(--primary);
+  margin: 0;  
+}
+
+iframe {
+  display: block;
+  background: #000;
+  border: none;      
+  width: 100vw;
+  min-height: 1200px;
+}
+
+.b-divider {
+  display: block;
+  width: 100%;
+  height: 3rem;
+  background-color: rgba(93, 60, 129, .1);
+  border: solid rgba(93, 60, 129, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, .1), inset 0 0.125em 0.5em rgba(0, 0, 0, .15);
+}
+
+#icono-pagina {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.al-title {
+  color: #00ff87;
+}
+
+.image-container {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-container img {
+  display: block;
+  width: 150px;
+  height: auto;
 }

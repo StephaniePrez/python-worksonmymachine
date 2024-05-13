@@ -142,7 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const competenciaTipoDropdown = document.getElementById('competenciaTipoDropdown');
 
     const btnFiltrar = document.getElementById('btnFiltrar');
-    btnFiltrar.addEventListener('click', filtrarConsagraciones);
+    btnFiltrar.addEventListener('click', function() {
+        filtrarConsagraciones();
+        parent.postMessage('filtrarClick', '*');
+      });
 
     function filtrarConsagraciones() {
         console.log("entro a filtrar");
@@ -170,8 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         totalFiltrado.set(idEquipo, totalEquipo);
     
                     } else {
-                        console.log("equipo filtrado " + totales.nombreEquipo);
-
                         const nuevoTotalEquipo = {
                             nombreEquipo: totales.nombreEquipo,
                             totalAcumulado: consagracion.cantidad
@@ -205,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
             celdaEquipo.textContent = totalEquipo.nombreEquipo;
     
             const celdaCantidad = nuevaFila.insertCell();
-            console.log(nombreEquipoMap);
             celdaCantidad.textContent = totalEquipo.totalAcumulado;
 
             nuevaFila.style.display = '';
