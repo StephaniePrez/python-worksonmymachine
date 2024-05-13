@@ -1,12 +1,6 @@
-:root {
-  --primary: blue;
-  --light: white;
-  --grey: #ffffffe8;
+.custom-sidebar {
+  background-color: #5d3c81;
 }
-
-body {
-  overflow: hidden;
-  /*font-family: ; a agregar */
-  font-weight: 300;
-  color: var(--primary);
+.custom-sidebar-text {
+  color: #00ff87;
 }
