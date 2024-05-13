@@ -1,7 +1,12 @@
-:root {
-  --primary: blue;
-  --light: white;
-  --grey: #ffffffe8;
+.custom-sidebar {
+  background-color: #2a1b3a;
+}
+
+.custom-sidebar-text {
+  color: #00ff87;
+}
+.nav-link:hover {
+  color: #eaff00;
 }
 
 body {
