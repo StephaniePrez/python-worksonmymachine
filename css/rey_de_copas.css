@@ -51,12 +51,13 @@ canvas {
 .table tbody tr:nth-child(-n+5) {
     background-color: #00ff87;
     color: #5d3c81;
-  }
+    font-weight: bold;
+}
   
-  .table tbody tr:nth-child(-n+5) th,
-  .table tbody tr:nth-child(-n+5) td {
+.table tbody tr:nth-child(-n+5) th,
+.table tbody tr:nth-child(-n+5) td {
     border-color: #05f3ff;
-  }
+}
 
 #btnFiltrar {
     background-color: #00ff87;
