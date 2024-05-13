@@ -1,0 +1,65 @@
+body {
+    background-color: #5d3c81;
+    color: #00ff87;
+}
+
+canvas {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+  }
+
+.container-bg {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    position: relative;
+}
+
+.form-label {
+    color: #05f3ff;
+}
+
+.form-select {
+    background-color: #eaff00;
+    color: #000000;
+    border-color: #05f3ff;
+}
+
+.form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(5, 243, 255, 0.25);
+}
+
+.table {
+    background-color: #5d3c81;
+    color: #05f3ff;
+}
+
+.table th,
+.table td {
+    border-color: #05f3ff;
+}
+
+.table th {
+    color: #05f3ff;
+}
+
+.table tbody tr:nth-child(-n+5) {
+    background-color: #00ff87;
+    color: #5d3c81;
+  }
+  
+  .table tbody tr:nth-child(-n+5) th,
+  .table tbody tr:nth-child(-n+5) td {
+    border-color: #05f3ff;
+  }
+
+#btnFiltrar {
+    background-color: #00ff87;
+    border-color: #05f3ff;
+    color: #5d3c81;
+}
