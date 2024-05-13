@@ -4,3 +4,6 @@
 .custom-sidebar-text {
   color: #00ff87;
 }
+.nav-link:hover {
+  color: #eaff00;
+}
