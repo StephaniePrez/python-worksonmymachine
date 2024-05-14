@@ -23,11 +23,12 @@
     margin-bottom: 20px; 
     width: 100%;
     text-align: center;
-    color: #00ff87;;
+    color: #00ff87;
 }
 
 .escudo {
     width: 30px;
+    background-color: transparent; 
 }
 
 th {
@@ -36,5 +37,6 @@ th {
 }
 
 td {
-    background-color: #DCF1F7 !important;
+    background-color: rgba(0, 0, 0, 0.144) !important;
+    color: #00ff87 !important;
 }
