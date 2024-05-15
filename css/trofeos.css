@@ -2,20 +2,13 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-/* Main content */
-main {
-    background-image: url('../img/bg.jpg');
-    background-repeat: repeat-x;
-    /* max-width: 1900px; */
+    background-color: #5d3c81;
 }
 
 .main-container {
     max-width: 800px;
     margin: 0 auto;
 }
-
 
 /* Statics section */
 
@@ -30,18 +23,20 @@ main {
     margin-bottom: 20px; 
     width: 100%;
     text-align: center;
-    color: #D0B47D;
+    color: #00ff87;
 }
 
 .escudo {
     width: 30px;
+    background-color: transparent; 
 }
 
 th {
-    background-color: #92C1F2 !important;
-    color:white !important;
+    background-color: #05f3ff !important;
+    color:black !important;
 }
 
 td {
-    background-color: #DCF1F7 !important;
+    background-color: rgba(0, 0, 0, 0.144) !important;
+    color: #00ff87 !important;
 }
