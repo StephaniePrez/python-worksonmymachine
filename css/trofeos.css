@@ -1,0 +1,42 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    background-color: #5d3c81;
+}
+
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Statics section */
+
+.logo-afa {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    padding-top: 40px;
+}
+
+.trofeos-title {
+    margin-bottom: 20px; 
+    width: 100%;
+    text-align: center;
+    color: #00ff87;
+}
+
+.escudo {
+    width: 30px;
+    background-color: transparent; 
+}
+
+th {
+    background-color: #05f3ff !important;
+    color:black !important;
+}
+
+td {
+    background-color: rgba(0, 0, 0, 0.144) !important;
+    color: #00ff87 !important;
+}
