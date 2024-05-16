@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const baseUrl = window.location.origin;
+    const host = window.location.hostname;
+    const repoName = "python-worksonmymachine";
+    let baseUrl = "";
+    
+    if(!host == "127.0.0.1") {
+        baseUrl = "https://" + host + "/" + repoName;
+    };
 
     let nombreEraMap = new Map();
     let nombreAmbitoMap = new Map();
