@@ -81,17 +81,46 @@ for (var i = 0; i < maxConfettis; i++) {
 canvas.width = W;
 canvas.height = H;
 
+let touchStartY = 0;
+let touchEndY = 0;
+
+window.addEventListener(
+  "touchstart",
+  function(event) {
+    touchStartY = event.touches[0].clientY;
+  },
+  false
+);
+
+window.addEventListener(
+  "touchend",
+  function(event) {
+    touchEndY = event.changedTouches[0].clientY;
+    handleTouchScroll();
+  },
+  false
+);
+
 window.addEventListener(
   "wheel",
   function(event) {
     if (event.deltaY > 0) {
+      currentFrame = Math.max(0, currentFrame - 1); // Scroll hacia abajo
       Draw();
     } else {
-      currentFrame = Math.max(0, currentFrame - 1);
-      Draw();
+      Draw(); // Scroll hacia arriba
     }
   },
   false
 );
+
+function handleTouchScroll() {
+  if (touchEndY < touchStartY) {
+    Draw(); // Scroll hacia arriba
+  } else if (touchEndY > touchStartY) {
+    currentFrame = Math.max(0, currentFrame - 1); // Scroll hacia abajo
+    Draw();
+  }
+}
 
 Draw();
