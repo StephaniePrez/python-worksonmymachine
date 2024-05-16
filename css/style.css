@@ -65,3 +65,19 @@ iframe {
   width: 150px;
   height: auto;
 }
+
+.link-no-scroll {
+  cursor: pointer;
+}
+
+.invisible-divider {
+  height: 300px;
+  position: relative;
+}
+
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
