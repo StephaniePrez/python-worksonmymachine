@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const baseUrl = window.location.origin;
+
     let nombreEraMap = new Map();
     let nombreAmbitoMap = new Map();
     let nombreTipoCompetenciaMap = new Map();
@@ -8,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let totalizadorEquipos = new Map();
     const fetchPromises = [];
 
-    fetchPromises.push(fetch('../resources/eraTipo.csv')
+    fetchPromises.push(fetch(baseUrl + '/resources/eraTipo.csv')
         .then(response => response.text())
         .then(csvData => {
             const lineas = csvData.split('\n');
@@ -23,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al cargar el archivo eraTipo.csv:', error);
         }));
 
-    fetchPromises.push(fetch('../resources/ambitoTipo.csv')
+    fetchPromises.push(fetch(baseUrl + '/resources/ambitoTipo.csv')
         .then(response => response.text())
         .then(csvData => {
             const lineas = csvData.split('\n');
@@ -38,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al cargar el archivo ambitoTipo.csv:', error);
         }));
 
-    fetchPromises.push(fetch('../resources/competenciaTipo.csv')
+    fetchPromises.push(fetch(baseUrl + '/resources/competenciaTipo.csv')
         .then(response => response.text())
         .then(csvData => {
             const lineas = csvData.split('\n');
@@ -53,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error al cargar el archivo competenciaTipo.csv:', error);
         }));
 
-    fetchPromises.push(fetch('../resources/equipo.csv')
+    fetchPromises.push(fetch(baseUrl + '/resources/equipo.csv')
     .then(response => response.text())
     .then(csvData => {
         const lineas = csvData.split('\n');
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error al cargar el archivo equipo.csv:', error);
     }));
 
-    fetchPromises.push(fetch('../resources/competencia.csv')
+    fetchPromises.push(fetch(baseUrl + '/resources/competencia.csv')
     .then(response => response.text())
     .then(csvData => {
         const lineas = csvData.split('\n').slice(1);
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Promise.all(fetchPromises)
     .then(() => {
-        fetch('../resources/consagraciones.csv')
+        fetch(baseUrl + '/resources/consagraciones.csv')
             .then(response => response.text())
             .then(csvData => {
                 procesarDatosConsagraciones(csvData);
