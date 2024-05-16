@@ -1,0 +1,50 @@
+/*Header---------------------------------↓*/
+.nav-item {
+  border: 1px solid rgba(240, 236, 0, 0.99);
+  border-radius: 100px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.header-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+#myHeader {
+  width: 100%;
+  background-color: rgba(33, 37, 41, 0.897);
+  box-sizing: border-box;
+
+  .nav-link:hover {
+    color: rgba(240, 236, 0, 0.99);
+  }
+}
+
+.custom-header-text {
+  color: #00ff87;
+}
+/*Header---------------------------------↑*/
+
+/*titulo/Hero---------------------------------↓*/
+.titulo-custom {
+  color: white;
+}
+/*titulo/Hero---------------------------------↑*/
+body {
+  background-color: rgb(33, 37, 41);
+}
+
+/*<Accordion -------------------↓-->*/
+.accordion {
+}
+/*<Accordion -------------------↑-->*/
+footer {
+  bottom: 0; /* Colocar en la parte inferior */
+  width: 100%; /* Ancho completo */
+}
+
+hr {
+  border-top: 1px solid #ccc; /* Establece el color y grosor de la línea */
+  margin-top: 20px; /* Añade un margen superior para separación visual */
+}
