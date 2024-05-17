@@ -1,131 +1,115 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const host = window.location.hostname;
-    const repoName = "python-worksonmymachine";
-    let baseUrl = "";
-    
-    if(!host == "127.0.0.1") {
-        baseUrl = "https://" + host + "/" + repoName;
-    };
+    /** Decidimos obtener nuestros datos desde una api propia
+     *  que creamos exponiendo una google sheet usando Apps Script de google
+     *  dado que Github Pages tiene problemas con las rutas relativas para encontrar nuestros archivos csv 
+     */
+    const API_URL = 'https://script.google.com/macros/s/AKfycbz5mHL1QYmlqA7E9dfQhaSP7Qp9009DkovtI7BRuFH-VUaHUTGP0KZjHUu2-J-rKef6/exec';
 
     let nombreEraMap = new Map();
     let nombreAmbitoMap = new Map();
     let nombreTipoCompetenciaMap = new Map();
     let nombreEquipoMap = new Map();
     let listaCompetencias = [];
+    let listaConsagraciones = [];
     let totalizadorEquipos = new Map();
     const fetchPromises = [];
 
-    fetchPromises.push(fetch(baseUrl + '/resources/eraTipo.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            const lineas = csvData.split('\n');
-            lineas.shift();
-            console.log(lineas);
-            for (const linea of lineas) {
-                const campos = linea.split(',');
-                nombreEraMap.set(parseInt(campos[0]), campos[1]);
+    function fetchFromApi(action) {
+        return fetch(API_URL + '?action=' + action)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json();
+        })
+        .then(data => {
+            return data.records;
         })
         .catch(error => {
-            console.error('Error al cargar el archivo eraTipo.csv:', error);
-        }));
-
-    fetchPromises.push(fetch(baseUrl + '/resources/ambitoTipo.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            const lineas = csvData.split('\n');
-            lineas.shift();
-            console.log(lineas);
-            for (const linea of lineas) {
-                const campos = linea.split(',');
-                nombreAmbitoMap.set(parseInt(campos[0]), campos[1]);
-            }
+            console.error('Error al obtener los datos del servicio:', error);
         })
-        .catch(error => {
-            console.error('Error al cargar el archivo ambitoTipo.csv:', error);
-        }));
+    }
 
-    fetchPromises.push(fetch(baseUrl + '/resources/competenciaTipo.csv')
-        .then(response => response.text())
-        .then(csvData => {
-            const lineas = csvData.split('\n');
-            lineas.shift();
-            console.log(lineas);
-            for (const linea of lineas) {
-                const campos = linea.split(',');
-                nombreTipoCompetenciaMap.set(parseInt(campos[0]), campos[1]);
+    fetchPromises.push(fetchFromApi('get-era-tipo')
+        .then(records => {
+            for (const record of records) {
+                nombreEraMap.set(record.id, record.nombre);
             }
-        })
-        .catch(error => {
-            console.error('Error al cargar el archivo competenciaTipo.csv:', error);
-        }));
-
-    fetchPromises.push(fetch(baseUrl + '/resources/equipo.csv')
-    .then(response => response.text())
-    .then(csvData => {
-        const lineas = csvData.split('\n');
-        lineas.shift();
-        console.log(lineas);
-        for (const linea of lineas) {
-            const campos = linea.split(',');
-            nombreEquipoMap.set(parseInt(campos[0]), campos[1]);
-        }
-    })
-    .catch(error => {
-        console.error('Error al cargar el archivo equipo.csv:', error);
     }));
 
-    fetchPromises.push(fetch(baseUrl + '/resources/competencia.csv')
-    .then(response => response.text())
-    .then(csvData => {
-        const lineas = csvData.split('\n').slice(1);
-        console.log(lineas);
-        lineas.forEach(linea => {
-            const campos = linea.split(',');
+    fetchPromises.push(fetchFromApi('get-ambito-tipo')
+        .then(records => {
+            for (const record of records) {
+                nombreAmbitoMap.set(record.id, record.nombre);
+            }
+    }));
 
+    fetchPromises.push(fetchFromApi('get-equipo')
+        .then(records => {
+            for (const record of records) {
+                nombreEquipoMap.set(record.id, record.nombre);
+            }
+    }));
+
+    fetchPromises.push(fetchFromApi('get-competencia-tipo')
+    .then(records => {
+        for (const record of records) {
+            nombreTipoCompetenciaMap.set(record.id, record.nombre);
+        }
+    }));
+
+    fetchPromises.push(fetchFromApi('get-competencia')
+    .then(records => {
+        for (const record of records) {
+            
             const competencia = {
-                id: parseInt(campos[0]),
-                tipo: parseInt(campos[1]),
-                nombre: campos[2],
-                ambito: parseInt(campos[3]),
-                era: parseInt(campos[4])
+                id: parseInt(record.id),
+                tipo: parseInt(record.tipo),
+                nombre: record.nombre,
+                ambito: parseInt(record.ambito),
+                era: parseInt(record.era)
             };
 
             listaCompetencias.push(competencia);
-        });
-
-        console.log(listaCompetencias);
-    })
-    .catch(error => {
-        console.error('Error al cargar el archivo competencia.csv:', error);
+        }
     }));
+
+    fetchPromises.push(fetchFromApi('get-consagraciones')
+    .then(records => {
+        for (const record of records) {
+            
+            const consagraciones = {
+                id: parseInt(record.id),
+                equipo: parseInt(record.equipo),
+                competencia: parseInt(record.competencia),
+                cantidad: parseInt(record.cantidad)
+            };
+
+            listaConsagraciones.push(consagraciones);
+        }
+    }));
+
+    /* Cuando termina de obtener todos los datos, agrupa las consagraciones por equipo */
 
     Promise.all(fetchPromises)
     .then(() => {
-        fetch(baseUrl + '/resources/consagraciones.csv')
-            .then(response => response.text())
-            .then(csvData => {
-                procesarDatosConsagraciones(csvData);
-            })
-            .catch(error => console.error('Error al cargar el archivo CSV:', error));
+        procesarDatosConsagraciones(listaConsagraciones);
     })
     .catch(error => {
         console.error('Error al realizar las solicitudes fetch:', error);
     });
 
-    function procesarDatosConsagraciones(csvData) {
-            const filas = csvData.split('\n');
-            filas.shift();
+    function procesarDatosConsagraciones(listConsagraciones) {
 
-            filas.forEach((fila) => {
-                const columnas = fila.split(',');
-                const idEquipo = columnas[1];
+            listConsagraciones.forEach((consagracionesEquipo) => {
 
                 const consagracion = {
-                    competencia: parseInt(columnas[2]),
-                    cantidad: parseInt(columnas[3])
+                    competencia: parseInt(consagracionesEquipo.competencia),
+                    cantidad: parseInt(consagracionesEquipo.cantidad)
                 };
+
+                const idEquipo = consagracionesEquipo.equipo;
         
                 const totalEquipo = totalizadorEquipos.get(idEquipo);
 
@@ -135,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 } else {
                     const nuevoTotalEquipo = {
-                        nombreEquipo: nombreEquipoMap.get(parseInt(columnas[1])),
+                        nombreEquipo: nombreEquipoMap.get(parseInt(idEquipo)),
                         consagraciones: []
                     };
 
@@ -144,6 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
     }
+
+    /* Escucha el boton filtrar */
 
     const eraDropdown = document.getElementById('eraDropdown');
     const ambitoDropdown = document.getElementById('ambitoDropdown');
@@ -223,5 +209,4 @@ document.addEventListener('DOMContentLoaded', () => {
     function findCompetencia(idCompetencia)  {
         return listaCompetencias.find(comp => comp.id === parseInt(idCompetencia));
     }
-
 });

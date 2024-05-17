@@ -1,9 +1,0 @@
-id,tipo,nombre,ambito,era
-1,1,Torneos nacionales era amateur,1,1
-2,2,Copas nacionales era amateur,1,1
-3,2,Copas rioplatenses era amateur,2,1
-4,1,Torneos nacionales era profesional,1,2
-5,2,Copas nacionales era profesional,1,2
-6,2,Copas FIFA internacionales era profesional,2,2
-7,2,Copas Conmebol internacionales era profesional,2,2
-8,2,Copas rioplatenses era profesional,2,2
