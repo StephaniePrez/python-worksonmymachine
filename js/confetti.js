@@ -5,7 +5,6 @@ const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 const maxConfettis = 100;
 const particles = [];
-
 const possibleColors = ["White"];
 
 function randomFromTo(from, to) {
@@ -23,7 +22,7 @@ function confettiParticle() {
   this.tiltAngleIncremental = Math.random() * 0.07 + 0.05;
   this.tiltAngle = 0;
 
-  this.draw = function() {
+  this.draw = function () {
     context.beginPath();
     context.lineWidth = this.r / 2;
     context.strokeStyle = this.color;
@@ -65,7 +64,7 @@ function Draw() {
 
 window.addEventListener(
   "resize",
-  function() {
+  function () {
     W = window.innerWidth;
     H = window.innerHeight;
     canvas.width = window.innerWidth;
@@ -86,15 +85,16 @@ let touchEndY = 0;
 
 window.addEventListener(
   "touchstart",
-  function(event) {
+  function (event) {
     touchStartY = event.touches[0].clientY;
   },
   false
 );
 
 window.addEventListener(
-  "touchend",
-  function(event) {
+  "touchmove",
+  function (event) {
+    event.preventDefault();
     touchEndY = event.changedTouches[0].clientY;
     handleTouchScroll();
   },
@@ -103,7 +103,7 @@ window.addEventListener(
 
 window.addEventListener(
   "wheel",
-  function(event) {
+  function (event) {
     if (event.deltaY > 0) {
       currentFrame = Math.max(0, currentFrame - 1); // Scroll hacia abajo
       Draw();
@@ -115,10 +115,19 @@ window.addEventListener(
 );
 
 function handleTouchScroll() {
-  if (touchEndY < touchStartY) {
-    Draw(); // Scroll hacia arriba
-  } else if (touchEndY > touchStartY) {
-    currentFrame = Math.max(0, currentFrame - 1); // Scroll hacia abajo
+  // Aquí calculamos la diferencia entre la posición inicial y final del dedo
+  const deltaY = touchEndY - touchStartY;
+  // Ajustamos la velocidad del desplazamiento
+  const speed = 2;
+  // Calculamos el nuevo frame a dibujar según la diferencia de posición
+  const framesToDraw = Math.abs(deltaY) * speed;
+  for (let i = 0; i < framesToDraw; i++) {
+    if (deltaY < 0) {
+      currentFrame = Math.max(0, currentFrame - 1); // Scroll hacia arriba
+    } else if (deltaY > 0) {
+      // El valor 1 es el mínimo que avanzará al hacer scroll hacia abajo
+      currentFrame = Math.min(maxConfettis - 1, currentFrame + 1);
+    }
     Draw();
   }
 }

@@ -112,19 +112,28 @@
                 <li><a href="faqs.html" class="text-white link-no-scroll">FAQS</a></li>
               </ul>
             </div>
+            <!--formspree --↓ -->
             <div class="col-md-6">
-              <form id="contactForm">
+              <form id="contactForm"
+                action="https://formspree.io/f/xbjnbeba"
+                method="POST"
+              >
                 <div class="mb-3">
-                  <label for="nombre" class="form-label text-white">Nombre:</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <label for="email" class="form-label text-white">
+                    Tu email:
+                    <input type="email" class="form-control" id="email" name="email">
+                  </label>
                 </div>
                 <div class="mb-3">
-                  <label for="mensaje" class="form-label text-white">Mensaje:</label>
-                  <textarea class="form-control" id="mensaje" name="mensaje" rows="3"></textarea>
+                  <label for="mensaje" class="form-label text-white">
+                    Mensaje:
+                    <textarea class="form-control" id="message" name="message"></textarea>
+                  </label>
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
               </form>
             </div>
+            <!--formspree--↑ -->
           </div>
           <div class="row mt-5">
             <div class="col text-center">
