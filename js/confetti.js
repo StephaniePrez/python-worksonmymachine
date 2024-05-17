@@ -115,21 +115,19 @@ window.addEventListener(
 );
 
 function handleTouchScroll() {
-  // Aquí calculamos la diferencia entre la posición inicial y final del dedo
   const deltaY = touchEndY - touchStartY;
-  // Ajustamos la velocidad del desplazamiento
-  const speed = 2;
-  // Calculamos el nuevo frame a dibujar según la diferencia de posición
-  const framesToDraw = Math.abs(deltaY) * speed;
+  const speed = 1;
+  const reductionFactor = 2;
+  const framesToDraw = Math.abs(deltaY / reductionFactor) * speed;
   for (let i = 0; i < framesToDraw; i++) {
     if (deltaY < 0) {
-      currentFrame = Math.max(0, currentFrame - 1); // Scroll hacia arriba
+      currentFrame = Math.max(0, currentFrame - 1);
     } else if (deltaY > 0) {
-      // El valor 1 es el mínimo que avanzará al hacer scroll hacia abajo
       currentFrame = Math.min(maxConfettis - 1, currentFrame + 1);
     }
     Draw();
   }
 }
+
 
 Draw();
