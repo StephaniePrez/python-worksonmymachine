@@ -7,3 +7,4 @@ Consume una api propia generada con Google Apps Script, que utiliza un Spreadshe
 https://gist.github.com/nyancodeid/abc7f2c3ce47eda753dee8a2b63070ab
 
 
+Utiliza formspree para envío de emails a través del formulario de contacto en el footer
