@@ -50,7 +50,9 @@
     <!--Copas ---------------↓ -->
     <canvas id="canvas"></canvas>
     <div class="container mt-5 container-bg">
+        <div class="invisible-divider-2"></div>
         <h1 class="display-5 fw-bold al-title text-center">Cuantas copas tenés?</h1>
+        <div class="invisible-divider-3"></div>
         <h3 class="my-3 text-center mb-5">Filtrá las competencias para saber quien es el rey de reyes</h2>
         <div class="row mb-3">
             <div class="col-md-4">
@@ -78,14 +80,16 @@
                 </select>
             </div>
         </div>
+        <div class="invisible-divider-3"></div>
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <button class="btn btn-primary w-100" id="btnFiltrar">Filtrar</button>
             </div>
         </div>
+        <div class="invisible-divider-2" id="divider-after-filtrar"></div>
 
         <div class="container-sm">
-            <table id="tabla-consagraciones" class="table mt-4">
+            <table id="tabla-consagraciones" class="table mt-4 d-none">
                 <thead>
                     <tr>
                         <th>Equipo</th>

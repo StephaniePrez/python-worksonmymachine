@@ -114,20 +114,21 @@ window.addEventListener(
   false
 );
 
-function handleTouchScroll() {
-  const deltaY = touchEndY - touchStartY;
-  const speed = 1;
-  const reductionFactor = 2;
-  const framesToDraw = Math.abs(deltaY / reductionFactor) * speed;
-  for (let i = 0; i < framesToDraw; i++) {
-    if (deltaY < 0) {
-      currentFrame = Math.max(0, currentFrame - 1);
-    } else if (deltaY > 0) {
-      currentFrame = Math.min(maxConfettis - 1, currentFrame + 1);
-    }
-    Draw();
-  }
-}
-
+// function handleTouchScroll() {
+//   const deltaY = touchEndY - touchStartY;
+//   const speed = 0.5;
+//   const reductionFactor = 20;
+//   const maxFrames = 1;
+//   let framesToDraw = Math.abs(deltaY / reductionFactor) * speed;
+//   framesToDraw = Math.min(framesToDraw, maxFrames);
+//   for (let i = 0; i < framesToDraw; i++) {
+//     if (deltaY < 0) {
+//       currentFrame = Math.max(0, currentFrame - 1);
+//     } else if (deltaY > 0) {
+//       currentFrame = Math.min(maxConfettis - 1, currentFrame + 1);
+//     }
+//     Draw();
+//   }
+// }
 
 Draw();
