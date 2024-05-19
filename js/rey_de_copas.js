@@ -137,6 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnFiltrar = document.getElementById('btnFiltrar');
     btnFiltrar.addEventListener('click', function() {
+        document.getElementById('tabla-consagraciones').classList.remove('d-none');
+        document.getElementById('divider-after-filtrar').classList.add('d-none');
         filtrarConsagraciones();
         parent.postMessage('filtrarClick', '*');
       });

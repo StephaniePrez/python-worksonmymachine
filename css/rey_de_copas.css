@@ -1,6 +1,20 @@
 body {
-    background-color: #5d3c81;
+    background: linear-gradient(135deg, #5d3c81, black, #5d3c81, black, #5d3c81);
+    background-size: 400% 400%;
+    animation: gradientAnimation 60s ease infinite;
     color: #00ff87;
+}
+
+@keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
 }
 
 canvas {
@@ -12,7 +26,10 @@ canvas {
   }
 
 .container-bg {
-    background-color: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(
+        rgba(53, 53, 53, 0.7), /* Gris claro con transparencia */
+        rgba(0, 0, 0, 0.7) /* Negro con transparencia */
+      );
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
