@@ -84,6 +84,11 @@ iframe {
   position: relative;
 }
 
+.invisible-divider-4 {
+  height: 15px;
+  position: relative;
+}
+
 footer {
   bottom: 0;
   left: 0;
