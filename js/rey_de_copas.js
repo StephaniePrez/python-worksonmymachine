@@ -214,12 +214,20 @@ document.addEventListener('DOMContentLoaded', () => {
         tabla.innerHTML = '';
 
         if(totalFiltrado != null && totalFiltrado.size > 0 ) {
+            let primerElemento = true;
+
             totalFiltrado.forEach((totalEquipo) => {
 
                 const nuevaFila = tabla.insertRow();
-    
                 const celdaEquipo = nuevaFila.insertCell();
-                celdaEquipo.textContent = totalEquipo.nombreEquipo;
+                
+                if (primerElemento) {
+                    nuevaFila.classList.add('fila-destacada');
+                    celdaEquipo.textContent = "👑 " + totalEquipo.nombreEquipo;
+                    primerElemento = false;
+                } else {
+                    celdaEquipo.textContent = totalEquipo.nombreEquipo;
+                }
         
                 const celdaCantidad = nuevaFila.insertCell();
                 celdaCantidad.textContent = totalEquipo.totalAcumulado;
