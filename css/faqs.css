@@ -13,7 +13,7 @@
 }
 #myHeader {
   width: 100%;
-  background-color: rgba(33, 37, 41, 0.897);
+  background-color: rgba(93, 60, 129, 0.97);
   box-sizing: border-box;
 
   .nav-link:hover {
@@ -32,12 +32,11 @@
 }
 /*titulo/Hero---------------------------------↑*/
 body {
-  background-color: rgb(33, 37, 41);
+  background-color: rgba(93, 60, 129, 1);
 }
 
 /*<Accordion -------------------↓-->*/
-.accordion {
-}
+
 /*<Accordion -------------------↑-->*/
 footer {
   bottom: 0; /* Colocar en la parte inferior */
