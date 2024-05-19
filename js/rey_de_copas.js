@@ -137,10 +137,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnFiltrar = document.getElementById('btnFiltrar');
     btnFiltrar.addEventListener('click', function() {
-        document.getElementById('tabla-consagraciones').classList.remove('d-none');
-        document.getElementById('divider-after-filtrar').classList.add('d-none');
-        filtrarConsagraciones();
-        parent.postMessage('filtrarClick', '*');
+
+        document.getElementById('tabla-consagraciones').classList.add('d-none');
+
+        window.scrollBy({
+            top: 100,
+            behavior: 'smooth'
+        });
+        
+        sleepWithLoading(2000).then(() => { 
+
+            document.getElementById('tabla-consagraciones').classList.remove('d-none');
+            document.getElementById('divider-after-filtrar').classList.add('d-none');
+
+            window.scrollBy({ //baja hasta la tabla generada despues de filtrar
+                top: 300,
+                behavior: 'smooth'
+            });
+
+            filtrarConsagraciones();
+            parent.postMessage('filtrarClick', '*');
+        
+        });
+        
       });
 
     function filtrarConsagraciones() {
@@ -194,21 +213,50 @@ document.addEventListener('DOMContentLoaded', () => {
         const tabla = document.getElementById('tabla-consagraciones').getElementsByTagName('tbody')[0];
         tabla.innerHTML = '';
 
-        totalFiltrado.forEach((totalEquipo) => {
+        if(totalFiltrado != null && totalFiltrado.size > 0 ) {
+            totalFiltrado.forEach((totalEquipo) => {
 
+                const nuevaFila = tabla.insertRow();
+    
+                const celdaEquipo = nuevaFila.insertCell();
+                celdaEquipo.textContent = totalEquipo.nombreEquipo;
+        
+                const celdaCantidad = nuevaFila.insertCell();
+                celdaCantidad.textContent = totalEquipo.totalAcumulado;
+    
+                nuevaFila.style.display = '';
+            });
+        } else {
             const nuevaFila = tabla.insertRow();
 
             const celdaEquipo = nuevaFila.insertCell();
-            celdaEquipo.textContent = totalEquipo.nombreEquipo;
-    
+            celdaEquipo.textContent = "No existen ganadores para los filtros seleccionados.";
+
             const celdaCantidad = nuevaFila.insertCell();
-            celdaCantidad.textContent = totalEquipo.totalAcumulado;
+            celdaCantidad.textContent = "";
 
             nuevaFila.style.display = '';
-        });
+        }
     }
 
     function findCompetencia(idCompetencia)  {
         return listaCompetencias.find(comp => comp.id === parseInt(idCompetencia));
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function sleepWithLoading(ms) {
+
+        const loadingModal = document.getElementById('loadingModal');
+        loadingModal.classList.remove('d-none');
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                loadingModal.classList.add('d-none')
+                resolve();
+            }, ms);
+        });
     }
 });
