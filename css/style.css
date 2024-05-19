@@ -95,3 +95,45 @@ footer {
   width: 100%;
   z-index: 9999;
 }
+
+@keyframes scaleAnimation {
+  0%, 100% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.5);
+  }
+}
+
+#loadingModal {
+  display: block;
+  z-index: 9000;
+  width: 100%;
+  height: auto;
+  position: relative;
+  background-color: transparent;
+}
+
+.loading:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: #00ff87;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 #00ff87,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 #00ff87,
+      .5em 0 0 #00ff87;}}
