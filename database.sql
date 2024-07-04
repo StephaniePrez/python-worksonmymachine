@@ -175,6 +175,35 @@ INSERT INTO `era_tipo` VALUES (1,'Amateur'),(2,'Profesional');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `hinchas`
+--
+
+DROP TABLE IF EXISTS `hinchas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hinchas` (
+  `id` int NOT NULL,
+  `puesto` int DEFAULT NULL,
+  `equipo` varchar(100) DEFAULT NULL,
+  `escudo` varchar(100) DEFAULT NULL,
+  `copas` int DEFAULT NULL,
+  `afiliados` int DEFAULT NULL,
+  `sedes` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hinchas`
+--
+
+LOCK TABLES `hinchas` WRITE;
+/*!40000 ALTER TABLE `hinchas` DISABLE KEYS */;
+INSERT INTO `hinchas` VALUES (1,1,'River Plate','rv.png',50,100000,95),(2,2,'Boca Juniors','bj.png',40,95000,50),(3,3,'Belgrano de Córdoba','cabc.png',20,90000,40),(4,4,'Independiente','cai.png',29,15000,97),(5,5,'San Lorenzo','casla.png',23,55000,20),(6,6,'Estudiantes de la Plata','edlp.png',14,88000,20),(7,7,'Huracán','hur.png',14,56000,20),(8,8,'Lanús','lan.png',12,45000,20),(9,9,'Racing Club','rac.png',32,54000,20),(10,10,'Rosario Central','rc.png',26,65000,20),(11,11,'Velez Sarsfield','vs.png',14,14000,20);
+/*!40000 ALTER TABLE `hinchas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping routines for database 'afa-lens'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -187,4 +216,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-03 21:21:58
+-- Dump completed on 2024-07-04 15:55:44
