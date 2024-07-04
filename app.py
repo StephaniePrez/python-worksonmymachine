@@ -29,7 +29,7 @@ def copas():
 @app.route("/trofeos")
 def trofeos():
     title = "Trofeos"
-    equipos = obtener_equipos()
+    equipos = obtener_hinchas()
     return render_template("trofeos.html", title=basicInfo(title), equipos=equipos)
 
 @app.route("/faqs")

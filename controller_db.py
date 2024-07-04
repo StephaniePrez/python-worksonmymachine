@@ -63,12 +63,12 @@ def obtener_consagraciones_filtradas(era, ambito, competencia_tipo):
     return [{"equipo": r[0], "cantidad": r[1]} for r in resultados]
 
 
-def obtener_equipos():
+def obtener_hinchas():
     conexion = conectarMySQL()
-    equipos = []
+    hinchas = []
     with conexion.cursor() as cursor:
-        sql = "SELECT * FROM equipos ORDER BY puesto"
+        sql = "SELECT * FROM hinchas ORDER BY puesto"
         cursor.execute(sql)
-        equipos = cursor.fetchall()
+        hinchas = cursor.fetchall()
     conexion.close()
-    return equipos
+    return hinchas
