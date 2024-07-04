@@ -1,6 +1,6 @@
 # instalar pymysql -> pip install pymysql
 # importar pymysql / SQLachemy / dbmysql
-# import pymysql
+import pymysql
 
 # conectar con el servidro MySQL
 def conectarMySQL():

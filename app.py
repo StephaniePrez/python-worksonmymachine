@@ -1,5 +1,5 @@
 # home -> root
-from flask import Flask, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect
 # from data import *
 from datetime import date, datetime
 
@@ -35,3 +35,13 @@ def trofeos():
 def faqs():
     title = "Faqs"
     return render_template("faqs.html", title=basicInfo(title))
+
+
+@app.route("/filtrar_consagraciones", methods=['POST'])
+def filtrar_consagraciones():
+    era = request.form.get('era')
+    ambito = request.form.get('ambito')
+    competencia_tipo = request.form.get('competenciaTipo')
+    
+    resultados = obtener_consagraciones_filtradas(era, ambito, competencia_tipo)
+    return jsonify(resultados)
