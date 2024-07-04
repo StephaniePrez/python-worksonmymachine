@@ -61,3 +61,14 @@ def obtener_consagraciones_filtradas(era, ambito, competencia_tipo):
     
     conexion.close()
     return [{"equipo": r[0], "cantidad": r[1]} for r in resultados]
+
+
+def obtener_equipos():
+    conexion = conectarMySQL()
+    equipos = []
+    with conexion.cursor() as cursor:
+        sql = "SELECT * FROM equipos ORDER BY puesto"
+        cursor.execute(sql)
+        equipos = cursor.fetchall()
+    conexion.close()
+    return equipos

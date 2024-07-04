@@ -31,116 +31,18 @@
                         </tr>
                     </thead>
                     <tbody class="table-hover text-center" id="userDetails">
+                        {% for equipo in equipos %}
                         <tr class="align-middle">
-                            <td>1</td>
+                            <td>{{ equipo[1] }}</td>
                             <td>
-                                <img src="{{url_for('static',filename='assets/escudos/rv.png')}}"
-                                    alt="Escudo de River Plate" class="escudo" />
+                                <img src="{{url_for('static',filename='assets/escudos/' + equipo[3])}}"
+                                    alt="Escudo de {{ equipo[2] }}" class="escudo" />
                             </td>
-                            <td>50</td>
-                            <td>100000</td>
-                            <td>95</td>
+                            <td>{{ equipo[4] }}</td>
+                            <td>{{ equipo[5] }}</td>
+                            <td>{{ equipo[6] }}</td>
                         </tr>
-                        <tr class="align-middle">
-                            <td>2</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/bj.png')}}"
-                                    alt="Escudo de Boca Juniors" class="escudo" />
-                            </td>
-                            <td>40</td>
-                            <td>95000</td>
-                            <td>50</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>3</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/cabc.png')}}"
-                                    alt="Escudo de Belgrano de Córdoba" class="escudo" />
-                            </td>
-                            <td>20</td>
-                            <td>90000</td>
-                            <td>40</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>4</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/cai.png')}}"
-                                    alt="Escudo de Independiente" class="escudo" />
-                            </td>
-                            <td>29</td>
-                            <td>15000</td>
-                            <td>97</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>5</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/casla.png')}}"
-                                    alt="Escudo de San Lorenzo" class="escudo" />
-                            </td>
-                            <td>23</td>
-                            <td>55000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>6</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/edlp.png')}}"
-                                    alt="Escudo de Estudiantes de la Plata" class="escudo" />
-                            </td>
-                            <td>14</td>
-                            <td>88000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>7</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/hur.png')}}"
-                                    alt="Escudo de Huracán" class="escudo" />
-                            </td>
-                            <td>14</td>
-                            <td>56000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>8</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/lan.png')}}" alt="Escudo de Lanús"
-                                    class="escudo" />
-                            </td>
-                            <td>12</td>
-                            <td>45000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>9</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/rac.png')}}"
-                                    alt="Escudo de Racing club" class="escudo" />
-                            </td>
-                            <td>32</td>
-                            <td>54000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>10</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/rc.png')}}"
-                                    alt="Escudo de Rosario Cental" class="escudo" />
-                            </td>
-                            <td>26</td>
-                            <td>65000</td>
-                            <td>20</td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>11</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/vs.png')}}"
-                                    alt="Escudo de Velez Sarsfield" class="escudo" />
-                            </td>
-                            <td>14</td>
-                            <td>14000</td>
-                            <td>20</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
