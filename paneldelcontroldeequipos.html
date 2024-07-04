@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control de equipos</title>
+
+     <!--Icono-->
+     <link rel="shortcut icon" type="image/x-icon" href="assets/img/Icon1.png" />
+     <!--BOOSTRAP-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/rey_de_copas.css">
+</head>
+<body>
+
+
+
+
+  <!--Header?-->
+  <div class="header-container">
+    <header id="myHeader" class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="index.html" class="nav-link custom-header-text" aria-current="page">Inicio</a></li>
+        <li class="nav-item"><a href="index.html#copas" class="nav-link custom-header-text">Copas</a></li>
+        <li class="nav-item"><a href="trofeos.html" class="nav-link custom-header-text">Hinchas</a></li>
+        <li class="nav-item"><a href="faqs.html" class="nav-link custom-header-text">FAQS</a></li>
+      </ul>
+    </header>
+  </div>
+  <!--Header?-->
+
+  <div class="container mt-5">
+    <h2>Agregar Información de Equipos de Fútbol</h2>
+    <form action="/agregar-equipo" method="post">
+        <!-- Competencia Tipo -->
+        <div class="form-group">
+            <label for="competenciaTipo">Tipo de Competencia</label>
+            <select class="form-control" id="competenciaTipo" name="competenciaTipo">
+                <option value="1">Torneo</option>
+                <option value="2">Copa</option>
+            </select>
+        </div>
+
+        <!-- Era Tipo -->
+        <div class="form-group">
+            <label for="eraTipo">Tipo de Era</label>
+            <select class="form-control" id="eraTipo" name="eraTipo">
+                <option value="1">Amateur</option>
+                <option value="2">Profesional</option>
+            </select>
+        </div>
+
+        <!-- Ámbito Tipo -->
+        <div class="form-group">
+            <label for="ambitoTipo">Tipo de Ámbito</label>
+            <select class="form-control" id="ambitoTipo" name="ambitoTipo">
+                <option value="1">Nacional</option>
+                <option value="2">Internacional</option>
+            </select>
+        </div>
+
+        <!-- Nombre de la Competencia -->
+        <div class="form-group">
+            <label for="competenciaNombre">Nombre de la Competencia</label>
+            <input type="text" class="form-control" id="competenciaNombre" name="competenciaNombre" required>
+        </div>
+
+        <!-- Equipo -->
+        <div class="form-group">
+            <label for="equipo">Equipo</label>
+            <select class="form-control" id="equipo" name="equipo">
+                <option value="1">Argentinos Juniors</option>
+                <option value="2">Atlético Tucumán</option>
+                <option value="3">Banfield</option>
+                <option value="4">Barracas Central</option>
+                <option value="5">Belgrano Córdoba</option>
+                <option value="6">Boca</option>
+                <option value="7">Central Córdoba (Rosario)</option>
+                <option value="8">Defensa y Justicia</option>
+                <option value="9">Deportivo Riestra</option>
+                <option value="10">Estudiantes de La Plata</option>
+                <option value="11">Gimnasia y Esgrima de La Plata</option>
+                <option value="12">Godoy Cruz</option>
+                <option value="13">Huracán</option>
+                <option value="14">Independiente</option>
+                <option value="15">Independiente Rivadavia</option>
+                <option value="16">Instituto</option>
+                <option value="17">Lanús</option>
+                <option value="18">Newell's</option>
+                <option value="19">Platense</option>
+                <option value="20">Racing</option>
+                <option value="21">River</option>
+                <option value="22">Rosario Central</option>
+                <option value="23">San Lorenzo</option>
+                <option value="24">Sarmiento</option>
+                <option value="25">Talleres</option>
+                <option value="26">Tigre</option>
+                <option value="27">Unión</option>
+                <option value="28">Vélez</option>
+            </select>
+        </div>
+
+        <!-- Cantidad de Consagraciones -->
+        <div class="form-group">
+            <label for="cantidadConsagraciones">Cantidad de Consagraciones</label>
+            <input type="number" class="form-control" id="cantidadConsagraciones" name="cantidadConsagraciones" required>
+        </div>
+
+        <!-- Cantidad de Hinchas -->
+        <div class="form-group">
+            <label for="cantidadHinchas">Cantidad de Hinchas</label>
+            <input type="number" class="form-control" id="cantidadHinchas" name="cantidadHinchas" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+
+
+    <!--Footer ---------------↓ -->
+    <footer class="bg-dark py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <ul class="list-unstyled mb-4">
+                <li><a href="index.html" class="text-white link-no-scroll">INICIO</a></li>
+                <li><a href="index.html#copas" class="text-white link-no-scroll">COPAS</a></li>
+                <li><a href="trofeos.html" class="text-white link-no-scroll">HINCHAS</a></li>
+                <li><a href="faqs.html" class="text-white link-no-scroll">FAQS</a></li>
+                <li><a href="paneldelcontroldeequipos.html" class="text-white link-no-scroll">Afa Lens Panel de control</a></li>
+              </ul>
+            </div>
+            <!--formspree --↓ -->
+            <div class="col-md-6">
+              <form id="contactForm"
+                action="https://formspree.io/f/xbjnbeba"
+                method="POST"
+              >
+                <div class="mb-3">
+                  <label for="email" class="form-label text-white">
+                    Tu email:
+                    <input type="email" class="form-control" id="email" name="email">
+                  </label>
+                </div>
+                <div class="mb-3">
+                  <label for="mensaje" class="form-label text-white">
+                    Mensaje:
+                    <textarea class="form-control" id="message" name="message"></textarea>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </form>
+            </div>
+            <!--formspree--↑ -->
+          </div>
+          <div class="row mt-5">
+            <div class="col text-center">
+              <img src="assets/img/CopaFutbol.png" alt="Icono del Sitio" class="img-fluid rounded-circle" style="width: 50px;">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col text-center">
+              <p class="text-white mb-0">&copy; 2024 WorksOnMyMachine - Todos los derechos reservados</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!--footer---------------↑ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>\
+</body>
+</html>
