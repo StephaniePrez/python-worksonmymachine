@@ -37,6 +37,12 @@ def faqs():
     title = "Faqs"
     return render_template("faqs.html", title=basicInfo(title))
 
+@app.route("/panel")
+def panel():
+    title = "Afa Lens Panel de control"
+    return render_template("panel.html", title=basicInfo(title))
+
+
 
 @app.route("/filtrar_consagraciones", methods=['POST'])
 def filtrar_consagraciones():
