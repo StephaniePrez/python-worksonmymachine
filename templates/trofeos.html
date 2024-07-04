@@ -1,0 +1,159 @@
+{% include 'defaults/head.html'%}
+
+<body>
+
+    {% include 'defaults/header.html'%}
+
+    <!--Hero---------------↓ -->
+    <div class="px-4 py-5 my-5 text-center">
+        <!-- <img class="rounded-circle shadow-4-strong" alt="AFA Lens" src="assets/img/Icon1.png" /> -->
+        <div class="image-container" id="start">
+            <img src="{{url_for('static',filename='assets/img/CopaFutbol.png')}}" alt="AFA Lens">
+        </div>
+        <h1 class="mb-5 fw-bold display-2 text-center">AFA Lens</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4"> Estadisticas de equipos</p>
+        </div>
+    </div>
+    <!--Hero---------------↑ -->
+
+    <main>
+        <div class="main-container">
+            <div class="table-responsive mt-4 p-4 wrapper rounded-3">
+                <table class="table table-scrollable">
+                    <thead class="bg-light text-center">
+                        <tr class="align-middle">
+                            <th>Puesto</th>
+                            <th>Equipo</th>
+                            <th>Copas</th>
+                            <th>Afiliados</th>
+                            <th>Sedes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover text-center" id="userDetails">
+                        <tr class="align-middle">
+                            <td>1</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/rv.png')}}"
+                                    alt="Escudo de River Plate" class="escudo" />
+                            </td>
+                            <td>50</td>
+                            <td>100000</td>
+                            <td>95</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>2</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/bj.png')}}"
+                                    alt="Escudo de Boca Juniors" class="escudo" />
+                            </td>
+                            <td>40</td>
+                            <td>95000</td>
+                            <td>50</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>3</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/cabc.png')}}"
+                                    alt="Escudo de Belgrano de Córdoba" class="escudo" />
+                            </td>
+                            <td>20</td>
+                            <td>90000</td>
+                            <td>40</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>4</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/cai.png')}}"
+                                    alt="Escudo de Independiente" class="escudo" />
+                            </td>
+                            <td>29</td>
+                            <td>15000</td>
+                            <td>97</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>5</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/casla.png')}}"
+                                    alt="Escudo de San Lorenzo" class="escudo" />
+                            </td>
+                            <td>23</td>
+                            <td>55000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>6</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/edlp.png')}}"
+                                    alt="Escudo de Estudiantes de la Plata" class="escudo" />
+                            </td>
+                            <td>14</td>
+                            <td>88000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>7</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/hur.png')}}"
+                                    alt="Escudo de Huracán" class="escudo" />
+                            </td>
+                            <td>14</td>
+                            <td>56000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>8</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/lan.png')}}" alt="Escudo de Lanús"
+                                    class="escudo" />
+                            </td>
+                            <td>12</td>
+                            <td>45000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>9</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/rac.png')}}"
+                                    alt="Escudo de Racing club" class="escudo" />
+                            </td>
+                            <td>32</td>
+                            <td>54000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>10</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/rc.png')}}"
+                                    alt="Escudo de Rosario Cental" class="escudo" />
+                            </td>
+                            <td>26</td>
+                            <td>65000</td>
+                            <td>20</td>
+                        </tr>
+                        <tr class="align-middle">
+                            <td>11</td>
+                            <td>
+                                <img src="{{url_for('static',filename='assets/escudos/vs.png')}}"
+                                    alt="Escudo de Velez Sarsfield" class="escudo" />
+                            </td>
+                            <td>14</td>
+                            <td>14000</td>
+                            <td>20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    {% include 'defaults/footer.html'%}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

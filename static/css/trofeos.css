@@ -1,23 +1,13 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    background-color: #5d3c81;
-}
+
 
 .main-container {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Statics section */
 
-.logo-afa {
-    display: block;
-    margin: 0 auto;
-    width: 300px;
-    padding-top: 40px;
-}
+
+
 
 .trofeos-title {
     margin-bottom: 20px; 
