@@ -16,7 +16,7 @@ Web generada con HTML, CSS y JS.
 
 A nivel backend expone a modo de api rest servicios que permiten CRUD de equipos y torneos.
 
-Se utilizó el framework Flask, base de datos MySQL y Bootstrap. Se puede acceder a la web app en el siguiente enlace: https://worksonmymachine.herokuapp.com/
+Se utilizó el framework Flask, base de datos MySQL y Bootstrap. Se puede acceder a la web app en el siguiente enlace: https://worksonmymachine.pythonanywhere.com
 
 Utiliza formspree para envío de emails a través del formulario de contacto en el footer
 
