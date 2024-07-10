@@ -1,14 +1,24 @@
 # python-worksonmymachine
 Repositiorio del curso Full Stack Python, 1er cuatrimestre 2024 - Codo a codo
 
-Grupo 12 - WorksOnMyMachine
+Equipo 12 - WorksOnMyMachine
 
-Web app que compara consagraciones de equipos de fútbol en Argentina. A nivel backend expone a modo de api rest servicios que permiten CRUD de equipos y torneos.
+Esta Web app tiene como finalidad contar todas las consagraciones de los equipos que en este momento se encuentran en la primera división del fútbol argentino. Las mismas se pueden filtrar por:
+- Eras: profesional / amateur / ambas
+- Ámbitos: nacional / internacional / ambos
+- Tipos de competencia: torneo / copa / ambos
+
+En esta primera etapa los datos que hemos recopilado son genéricos por cada uno de esos tipos. Mas adelante la idea es poder filtrar de manera anidada por cada una de las copas y torneos existentes. Asimismo iremos agregando datos que nos resulten relevantes de cada equipo o competencia, que sean útiles para determinar cuales son los grandes equipos del fútbol argentino del presente.
+
+---------------------------------------
+
+Web generada con HTML, CSS y JS.
+
+A nivel backend expone a modo de api rest servicios que permiten CRUD de equipos y torneos.
 
 Se utilizó el framework Flask, base de datos MySQL y Bootstrap. Se puede acceder a la web app en el siguiente enlace: https://worksonmymachine.herokuapp.com/
 
 Utiliza formspree para envío de emails a través del formulario de contacto en el footer
-
 
 ----------------
 ## Requisitos de instalación
