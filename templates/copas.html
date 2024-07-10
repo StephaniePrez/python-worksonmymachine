@@ -1,0 +1,86 @@
+{% include 'defaults/head.html'%}
+
+<body>
+
+    {% include 'defaults/header.html'%}
+
+    <!--Hero---------------↓ -->
+    <div class="px-4 py-5 my-5 text-center">
+        <div class="image-container" id="start">
+            <img src="{{url_for('static',filename='assets/img/CopaFutbol.png')}}" alt="AFA Lens">
+        </div>
+        <h1 class="mb-5 fw-bold display-2 text-center">AFA Lens</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Unite a la búsqueda del santo grial del fútbol argento: cuales son los equipos mas
+                grandes?
+            </p>
+        </div>
+    </div>
+    <!--Hero---------------↑ -->
+
+    <!--Copas ---------------↓ -->
+    <canvas id="canvas"></canvas>
+    <div id="copas" class="container mt-5 container-bg">
+        <div class="invisible-divider-2"></div>
+        <h1 class="display-5 fw-bold al-title text-center">Cuantas copas tenés?</h1>
+        <div class="invisible-divider-3"></div>
+        <h3 class="my-3 text-center mb-5">Filtrá las competencias para saber quien es el rey de reyes</h2>
+            <div class="row mb-3 justify-content-center">
+                <div class="col-lg-6 mb-3">
+                    <label for="eraDropdown" class="form-label">Era:</label>
+                    <select class="form-select" id="eraDropdown">
+                        <option value="0">Todos</option>
+                        {% for era in eras %}
+                            <option value="{{ era[0] }}">{{ era[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="invisible-divider-4"></div>
+                <div class="col-lg-6 mb-3">
+                    <label for="ambitoDropdown" class="form-label">Ámbito:</label>
+                    <select class="form-select" id="ambitoDropdown">
+                        <option value="0">Todos</option>
+                        {% for ambito in ambitos %}
+                            <option value="{{ ambito[0] }}">{{ ambito[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="invisible-divider-4"></div>
+                <div class="col-lg-6 mb-3">
+                    <label for="competenciaTipoDropdown" class="form-label">Tipo de Competencia:</label>
+                    <select class="form-select" id="competenciaTipoDropdown">
+                        <option value="0">Todos</option>
+                        {% for tipo in tiposCompetencia %}
+                            <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="invisible-divider-3"></div>
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <button class="btn btn-primary w-100 btnAfaLens" id="btnFiltrar">Filtrar</button>
+
+                    <div class="modal d-none" id="loadingModal" tabindex="-1" role="dialog">
+                        <div class="invisible-divider-3"></div>
+                        <p class="loading">Generando datos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="invisible-divider-2" id="divider-after-filtrar"></div>
+
+            <div class="container-sm">
+                <table id="tabla-consagraciones" class="table mt-4 d-none">
+                    <thead>
+                        <tr>
+                            <th>Equipo</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+    </div>
+    <!--Copas---------------↑ -->
+
+    {% include 'defaults/footer.html'%}

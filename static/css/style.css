@@ -137,3 +137,69 @@ footer {
     text-shadow:
       .25em 0 0 #00ff87,
       .5em 0 0 #00ff87;}}
+
+    .accordion-afalens .card {
+        border: none;
+        color: white;
+    }
+    .accordion-afalens .card-header {
+        background-color: #343a40;
+        color: white;
+        border: none;
+    }
+    .accordion-afalens .card-header h2 button{
+      background-color: #343a40;
+      color: white;
+      border: none;
+    }
+    .accordion-afalens .card-body {
+        background-color: #343a40;
+        color: white;
+        border: none;
+    }
+    .accordion-afalens .btn-link {
+        color: white;
+    }
+    .accordion-afalens .btn-link:hover {
+        text-decoration: none;
+        color: #adb5bd;
+    }
+
+    .table-panel-afalens {
+      background-color: #3e4a52; /* Fondo gris oscuro claro */
+      color: white; /* Texto blanco */
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px; /* Espacio entre las filas */
+  }
+  
+  .table-panel-afalens th,
+  .table-panel-afalens td {
+      border-top: none; /* Borde superior */
+      padding: 8px;
+      text-align: left;
+  }
+  
+  .table-panel-afalens th:first-child,
+  .table-panel-afalens td:first-child {
+      border-left: none; /* Sin borde izquierdo en la primera columna */
+  }
+  
+  .table-panel-afalens th:last-child,
+  .table-panel-afalens td:last-child {
+      border-right: none; /* Sin borde derecho en la última columna */
+  }
+  
+  .table-panel-afalens th {
+      background-color: #343a40; /* Fondo gris oscuro para encabezados */
+      color: white; /* Texto blanco */
+  }
+
+  .modal-header {
+    background-color: #343a40;
+    color: white;
+  }
+
+  .modal-body label, .modal-body {
+    color: #343a40;
+  }

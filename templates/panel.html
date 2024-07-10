@@ -1,0 +1,554 @@
+{% include 'defaults/head.html'%}
+<body>
+
+  {% include 'defaults/header.html'%}
+
+  <div class="container">
+    <h1 class="mt-4">Panel de control</h1>
+    <div class="invisible-divider-3"></div>
+
+    <!--------------------------------------------->
+    <!----------------- EQUIPOS ------------------->
+    <!--------------------------------------------->
+    <div class="accordion accordion-afalens" id="simpleAccordionEquipos">
+        <div class="card ">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-2 mt-2">
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h2>Equipos</h2>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#simpleAccordionEquipos">
+                <div class="card-body">
+
+                    <div class="invisible-divider-5"></div>
+
+                    <div class="row mb-4">
+                        <div class="col">
+                            <!-- Buscador de Equipos -->
+                            <div class="form-group mb-0">
+                                <input type="text" class="form-control" id="buscarEquipo" placeholder="Filtrar equipos por nombre...">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <!-- Botón Agregar Equipo -->
+                            <button class="btn btn-primary btnAfaLens" data-toggle="modal" data-target="#addEquipoModal"> ➕ Agregar Equipo</button>
+                        </div>
+                    </div>
+
+                    <table class="table-panel-afalens mt-4">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for equipo in equipos %}
+                                <tr>
+                                    <td>{{ equipo[0] }}</td>
+                                    <td>{{ equipo[1] }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editEquipoModal{{ equipo[0] }}">Editar</button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteEquipoModal{{ equipo[0] }}">
+                                            Eliminar
+                                        </button>
+
+                                        <!-- Modal de confirmación de eliminación -->
+                                        <div class="modal fade" id="confirmDeleteEquipoModal{{ equipo[0] }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteEquipoModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteEquipoModalLabel">Confirmación de Eliminación</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Estás seguro que deseas eliminar el equipo "{{ equipo[1] }}"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <!-- Enlace para eliminar el equipo -->
+                                                        <a href="/eliminar_equipo/{{ equipo[0] }}" class="btn btn-danger">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                
+                                <!-- Edit Equipo Modal -->
+                                <div class="modal fade" id="editEquipoModal{{ equipo[0] }}" tabindex="-1" aria-labelledby="editEquipoModalLabel{{ equipo[0] }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editEquipoModalLabel{{ equipo[0] }}">Editar Equipo</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/editar_equipo/{{ equipo[0] }}" method="post">
+                                                    <div class="form-group mt-2">
+                                                        <label for="nombreEquipo{{ equipo[0] }}">Nombre del Equipo</label>
+                                                        <input type="text" class="form-control" id="nombreEquipo{{ equipo[0] }}" name="nombreEquipo" value="{{ equipo[1] }}">
+                                                    </div>
+                                                    <div class="invisible-divider-3"></div>
+                                                    <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Equipo Modal -->
+    <div class="modal fade" id="addEquipoModal" tabindex="-1" aria-labelledby="addEquipoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEquipoModalLabel">Agregar Equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/agregar_equipo" method="post">
+                        <div class="form-group">
+                            <label for="nombreEquipo">Nombre del Equipo</label>
+                            <input type="text" class="form-control" id="nombreEquipo" name="nombreEquipo">
+                        </div>
+                        <div class="invisible-divider-3"></div>
+                        <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------->
+    <!------------------ ERAS --------------------->
+    <!--------------------------------------------->
+
+    <div class="accordion accordion-afalens" id="simpleAccordionEras">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-2 mt-2">
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <h2>Eras</h2>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#simpleAccordionEras">
+                <div class="card-body">
+                    <div class="invisible-divider-5"></div>
+
+                    
+                    <button class="btn btn-primary btnAfaLens" data-toggle="modal" data-target="#addEraModal"> ➕ Agregar Era</button>
+    
+                    <table class="table-panel-afalens mt-4">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for era in eras %}
+                                <tr>
+                                    <td>{{ era[0] }}</td>
+                                    <td>{{ era[1] }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editEraModal{{ era[0] }}">Editar</button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteEraModal{{ era[0] }}">
+                                            Eliminar
+                                        </button>
+    
+                                        <!-- Modal de confirmación de eliminación -->
+                                        <div class="modal fade" id="confirmDeleteEraModal{{ era[0] }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteEraModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteEraModalLabel">Confirmación de Eliminación</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Estás seguro que deseas eliminar la era "{{ era[1] }}"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <!-- Enlace para eliminar la era -->
+                                                        <a href="/eliminar_era/{{ era[0] }}" class="btn btn-danger">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                
+                                <!-- Edit Era Modal -->
+                                <div class="modal fade" id="editEraModal{{ era[0] }}" tabindex="-1" aria-labelledby="editEraModalLabel{{ era[0] }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editEraModalLabel{{ era[0] }}">Editar Era</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/editar_era/{{ era[0] }}" method="post">
+                                                    <div class="form-group mt-2">
+                                                        <label for="nombreEra{{ era[0] }}">Nombre de la Era</label>
+                                                        <input type="text" class="form-control" id="nombreEra{{ era[0] }}" name="nombreEra" value="{{ era[1] }}">
+                                                    </div>
+                                                    <div class="invisible-divider-3"></div>
+                                                    <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Era Modal -->
+    <div class="modal fade" id="addEraModal" tabindex="-1" aria-labelledby="addEraModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEraModalLabel">Agregar Era</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/agregar_era" method="post">
+                        <div class="form-group">
+                            <label for="nombreEra">Nombre de la Era</label>
+                            <input type="text" class="form-control" id="nombreEra" name="nombreEra">
+                        </div>
+                        <div class="invisible-divider-3"></div>
+                        <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!--------------------------------------------->
+    <!----------------- AMBITOS ------------------->
+    <!--------------------------------------------->
+    <div class="accordion accordion-afalens" id="simpleAccordionAmbitos">
+        <div class="card">
+            <div class="card-header" id="headingAmbitos">
+                <h2 class="mb-2 mt-2">
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseAmbitos" aria-expanded="true" aria-controls="collapseAmbitos">
+                        <h2>Ámbitos</h2>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseAmbitos" class="collapse" aria-labelledby="headingAmbitos" data-parent="#simpleAccordionAmbitos">
+                <div class="card-body">
+                    <div class="invisible-divider-5"></div>
+    
+                    <button class="btn btn-primary btnAfaLens" data-toggle="modal" data-target="#addAmbitoModal"> ➕ Agregar Ámbito</button>
+    
+                    <table class="table-panel-afalens mt-4">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ambito in ambitos %}
+                                <tr>
+                                    <td>{{ ambito[0] }}</td>
+                                    <td>{{ ambito[1] }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editAmbitoModal{{ ambito[0] }}">Editar</button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteAmbitoModal{{ ambito[0] }}">
+                                            Eliminar
+                                        </button>
+    
+                                        <!-- Modal de confirmación de eliminación -->
+                                        <div class="modal fade" id="confirmDeleteAmbitoModal{{ ambito[0] }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteAmbitoModalLabel{{ ambito[0] }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteAmbitoModalLabel{{ ambito[0] }}">Confirmación de Eliminación</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Estás seguro que deseas eliminar el ámbito "{{ ambito[1] }}"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <!-- Enlace para eliminar el ámbito -->
+                                                        <a href="/eliminar_ambito/{{ ambito[0] }}" class="btn btn-danger">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                
+                                <!-- Edit Ámbito Modal -->
+                                <div class="modal fade" id="editAmbitoModal{{ ambito[0] }}" tabindex="-1" aria-labelledby="editAmbitoModalLabel{{ ambito[0] }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editAmbitoModalLabel{{ ambito[0] }}">Editar Ámbito</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/editar_ambito/{{ ambito[0] }}" method="post">
+                                                    <div class="form-group mt-2">
+                                                        <label for="nombreAmbito{{ ambito[0] }}">Nombre del Ámbito</label>
+                                                        <input type="text" class="form-control" id="nombreAmbito{{ ambito[0] }}" name="nombreAmbito" value="{{ ambito[1] }}">
+                                                    </div>
+                                                    <div class="invisible-divider-3"></div>
+                                                    <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Ámbito Modal -->
+    <div class="modal fade" id="addAmbitoModal" tabindex="-1" aria-labelledby="addAmbitoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAmbitoModalLabel">Agregar Ámbito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/agregar_ambito" method="post">
+                        <div class="form-group">
+                            <label for="nombreAmbito">Nombre del Ámbito</label>
+                            <input type="text" class="form-control" id="nombreAmbito" name="nombreAmbito">
+                        </div>
+                        <div class="invisible-divider-3"></div>
+                        <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!--------------------------------------------->
+    <!------------ COMPETENCIA TIPOS -------------->
+    <!--------------------------------------------->
+    <div class="accordion accordion-afalens" id="simpleAccordionTiposCompetencia">
+        <div class="card">
+            <div class="card-header" id="headingTiposCompetencia">
+                <h2 class="mb-2 mt-2">
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseTiposCompetencia" aria-expanded="true" aria-controls="collapseTiposCompetencia">
+                        <h2>Tipos de Competencia</h2>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTiposCompetencia" class="collapse" aria-labelledby="headingTiposCompetencia" data-parent="#simpleAccordionTiposCompetencia">
+                <div class="card-body">
+                    <div class="invisible-divider-5"></div>
+    
+                    <button class="btn btn-primary btnAfaLens" data-toggle="modal" data-target="#addTipoCompetenciaModal"> ➕ Agregar Tipo de Competencia</button>
+    
+                    <table class="table-panel-afalens mt-4">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tipo in tiposCompetencia %}
+                                <tr>
+                                    <td>{{ tipo[0] }}</td>
+                                    <td>{{ tipo[1] }}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editTipoCompetenciaModal{{ tipo[0] }}">Editar</button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmDeleteTipoCompetenciaModal{{ tipo[0] }}">
+                                            Eliminar
+                                        </button>
+    
+                                        <!-- Modal de confirmación de eliminación -->
+                                        <div class="modal fade" id="confirmDeleteTipoCompetenciaModal{{ tipo[0] }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteTipoCompetenciaModalLabel{{ tipo[0] }}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmDeleteTipoCompetenciaModalLabel{{ tipo[0] }}">Confirmación de Eliminación</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ¿Estás seguro que deseas eliminar el tipo de competencia "{{ tipo[1] }}"?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <!-- Enlace para eliminar el tipo de competencia -->
+                                                        <a href="/eliminar_competencia_tipo/{{ tipo[0] }}" class="btn btn-danger">Eliminar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                
+                                <!-- Edit Tipo de Competencia Modal -->
+                                <div class="modal fade" id="editTipoCompetenciaModal{{ tipo[0] }}" tabindex="-1" aria-labelledby="editTipoCompetenciaModalLabel{{ tipo[0] }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editTipoCompetenciaModalLabel{{ tipo[0] }}">Editar Tipo de Competencia</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/editar_competencia_tipo/{{ tipo[0] }}" method="post">
+                                                    <div class="form-group mt-2">
+                                                        <label for="nombreTipoCompetencia{{ tipo[0] }}">Nombre del Tipo de Competencia</label>
+                                                        <input type="text" class="form-control" id="nombreTipoCompetencia{{ tipo[0] }}" name="nombreTipoCompetencia" value="{{ tipo[1] }}">
+                                                    </div>
+                                                    <div class="invisible-divider-3"></div>
+                                                    <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Tipo de Competencia Modal -->
+    <div class="modal fade" id="addTipoCompetenciaModal" tabindex="-1" aria-labelledby="addTipoCompetenciaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTipoCompetenciaModalLabel">Agregar Tipo de Competencia</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/agregar_competencia_tipo" method="post">
+                        <div class="form-group">
+                            <label for="nombreTipoCompetencia">Nombre del Tipo de Competencia</label>
+                            <input type="text" class="form-control" id="nombreTipoCompetencia" name="nombreTipoCompetencia">
+                        </div>
+                        <div class="invisible-divider-3"></div>
+                        <button type="submit" class="btn btn-primary btnAfaLens">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!--------------------------------------------->
+    <!--------------- COMPETENCIAS ---------------->
+    <!--------------------------------------------->
+    <div class="accordion accordion-afalens" id="simpleAccordionCompetencias">
+        <div class="card ">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-2 mt-2">
+                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <h2>Competencias</h2>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#simpleAccordionCompetencias">
+                <div class="card-body">
+
+                    <div class="invisible-divider-5"></div>
+
+                    <table class="table-panel-afalens mt-4">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                                <th>Ámbito</th>
+                                <th>Era</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for competencia in competencias %}
+                                <tr>
+                                    <td>{{ competencia[0] }}</td>
+                                    <td>{{ competencia[1] }}</td>
+                                    <td>{{ competencia[2] }}</td>
+                                    <td>{{ competencia[3] }}</td>
+                                    <td>{{ competencia[4] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="invisible-divider"></div>
+</div>
+
+
+
+
+    <!--Footer ---------------↓ -->
+    {% include 'defaults/footer.html'%}
+    <!--footer---------------↑ -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static',filename='js/panel.js')}}"></script>
+
+</body>
+
+</html>

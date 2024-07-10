@@ -1,0 +1,32 @@
+
+
+.main-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+
+
+
+.trofeos-title {
+    margin-bottom: 20px; 
+    width: 100%;
+    text-align: center;
+    color: #00ff87;
+}
+
+.escudo {
+    height: 35px;
+    background-color: transparent; 
+}
+
+th {
+    background-color: #05f3ff;
+    color:black;
+}
+
+td {
+    background-color: rgba(0, 0, 0, 0.144);
+    color: #00ff87;
+}
