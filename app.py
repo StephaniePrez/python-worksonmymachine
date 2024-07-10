@@ -5,6 +5,8 @@ from datetime import date, datetime
 
 from controller_db import *
 
+print("Starting Flask application...")
+
 app = Flask(__name__)
 
 def basicInfo(getTitle):
@@ -19,7 +21,10 @@ def basicInfo(getTitle):
 @app.route("/")
 def home():
     title="Home"
-    return render_template("index.html",title=basicInfo(title))
+    eras = obtener_eras()
+    ambitos = obtener_ambitos()
+    tiposCompetencia = obtener_competencia_tipos()
+    return render_template("index.html",title=basicInfo(title), eras=eras, ambitos=ambitos, tiposCompetencia=tiposCompetencia)
 
 @app.route('/#copas')
 def copas():
@@ -40,9 +45,80 @@ def faqs():
 @app.route("/panel")
 def panel():
     title = "Afa Lens Panel de control"
-    return render_template("panel.html", title=basicInfo(title))
+    equipos = obtener_equipos()
+    competencias = obtener_competencias()
+    eras = obtener_eras()
+    ambitos = obtener_ambitos()
+    tiposCompetencia = obtener_competencia_tipos()
+    return render_template("panel.html", title=basicInfo(title), equipos=equipos, competencias=competencias, eras=eras, ambitos=ambitos, tiposCompetencia=tiposCompetencia)
 
+@app.route('/agregar_equipo', methods=['POST'])
+def agregar_equipo_route():
+    nombre = request.form['nombreEquipo']
+    agregar_equipo(nombre)
+    return redirect(('/panel'))
 
+@app.route('/editar_equipo/<int:id>', methods=['POST'])
+def editar_equipo_route(id):
+    nombre = request.form['nombreEquipo']
+    editar_equipo(id, nombre)
+    return redirect(('/panel'))
+
+@app.route('/eliminar_equipo/<int:id>')
+def eliminar_equipo_route(id):
+    eliminar_equipo(id)
+    return redirect(('/panel'))
+
+@app.route('/agregar_era', methods=['POST'])
+def agregar_era_route():
+    nombre = request.form['nombreEra']
+    agregar_era(nombre)
+    return redirect(('/panel'))
+
+@app.route('/editar_era/<int:id>', methods=['POST'])
+def editar_era_route(id):
+    nombre = request.form['nombreEra']
+    editar_era(id, nombre)
+    return redirect(('/panel'))
+
+@app.route('/eliminar_era/<int:id>')
+def eliminar_era_route(id):
+    eliminar_era(id)
+    return redirect(('/panel'))
+
+@app.route('/agregar_ambito', methods=['POST'])
+def agregar_ambito_route():
+    nombre = request.form['nombreAmbito']
+    agregar_ambito(nombre)
+    return redirect(('/panel'))
+
+@app.route('/editar_ambito/<int:id>', methods=['POST'])
+def editar_ambito_route(id):
+    nombre = request.form['nombreAmbito']
+    editar_ambito(id, nombre)
+    return redirect(('/panel'))
+
+@app.route('/eliminar_ambito/<int:id>')
+def eliminar_ambito_route(id):
+    eliminar_ambito(id)
+    return redirect(('/panel'))
+
+@app.route('/agregar_competencia_tipo', methods=['POST'])
+def agregar_competencia_tipo_route():
+    nombre = request.form['nombreTipoCompetencia']
+    agregar_competencia_tipo(nombre)
+    return redirect(('/panel'))
+
+@app.route('/editar_competencia_tipo/<int:id>', methods=['POST'])
+def editar_competencia_tipo_route(id):
+    nombre = request.form['nombreTipoCompetencia']
+    editar_competencia_tipo(id, nombre)
+    return redirect(('/panel'))
+
+@app.route('/eliminar_competencia_tipo/<int:id>')
+def eliminar_competencia_tipo_route(id):
+    eliminar_competencia_tipo(id)
+    return redirect(('/panel'))
 
 @app.route("/filtrar_consagraciones", methods=['POST'])
 def filtrar_consagraciones():
@@ -52,3 +128,6 @@ def filtrar_consagraciones():
     
     resultados = obtener_consagraciones_filtradas(era, ambito, competencia_tipo)
     return jsonify(resultados)
+
+if __name__ == '__main__':
+    app.run(debug=True)

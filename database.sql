@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `ambito_tipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ambito_tipo` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -35,7 +35,7 @@ CREATE TABLE `ambito_tipo` (
 
 LOCK TABLES `ambito_tipo` WRITE;
 /*!40000 ALTER TABLE `ambito_tipo` DISABLE KEYS */;
-INSERT INTO `ambito_tipo` VALUES (1,'Nacional'),(2,'Internacional');
+INSERT INTO `ambito_tipo` (`nombre`) VALUES ('Nacional'),('Internacional');
 /*!40000 ALTER TABLE `ambito_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,7 +47,7 @@ DROP TABLE IF EXISTS `competencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `competencia` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `tipo` int DEFAULT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `ambito` int DEFAULT NULL,
@@ -68,7 +68,16 @@ CREATE TABLE `competencia` (
 
 LOCK TABLES `competencia` WRITE;
 /*!40000 ALTER TABLE `competencia` DISABLE KEYS */;
-INSERT INTO `competencia` VALUES (1,1,'Torneos nacionales era amateur',1,1),(2,2,'Copas nacionales era amateur',1,1),(3,2,'Copas rioplatenses era amateur',2,1),(4,1,'Torneos nacionales era profesional',1,2),(5,2,'Copas nacionales era profesional',1,2),(6,2,'Copas FIFA internacionales era profesional',2,2),(7,2,'Copas Conmebol internacionales era profesional',2,2),(8,2,'Copas rioplatenses era profesional',2,2);
+INSERT INTO `competencia` (`tipo`, `nombre`, `ambito`, `era`)
+VALUES 
+(1,'Torneos nacionales era amateur',1,1),
+(2,'Copas nacionales era amateur',1,1),
+(2,'Copas rioplatenses era amateur',2,1),
+(1,'Torneos nacionales era profesional',1,2),
+(2,'Copas nacionales era profesional',1,2),
+(2,'Copas FIFA internacionales era profesional',2,2),
+(2,'Copas Conmebol internacionales era profesional',2,2),
+(2,'Copas rioplatenses era profesional',2,2);
 /*!40000 ALTER TABLE `competencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +89,7 @@ DROP TABLE IF EXISTS `competencia_tipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `competencia_tipo` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -92,7 +101,7 @@ CREATE TABLE `competencia_tipo` (
 
 LOCK TABLES `competencia_tipo` WRITE;
 /*!40000 ALTER TABLE `competencia_tipo` DISABLE KEYS */;
-INSERT INTO `competencia_tipo` VALUES (1,'Torneo'),(2,'Copa');
+INSERT INTO `competencia_tipo` (`nombre`) VALUES ('Torneo'),('Copa');
 /*!40000 ALTER TABLE `competencia_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +113,7 @@ DROP TABLE IF EXISTS `consagraciones_equipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `consagraciones_equipo` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `equipo` int DEFAULT NULL,
   `competencia` int DEFAULT NULL,
   `cantidad` int DEFAULT NULL,
@@ -122,7 +131,7 @@ CREATE TABLE `consagraciones_equipo` (
 
 LOCK TABLES `consagraciones_equipo` WRITE;
 /*!40000 ALTER TABLE `consagraciones_equipo` DISABLE KEYS */;
-INSERT INTO `consagraciones_equipo` VALUES (1,1,1,0),(2,1,2,0),(3,1,3,0),(4,1,4,3),(5,1,5,0),(6,1,6,0),(7,1,7,2),(8,1,8,0),(9,2,1,0),(10,2,2,0),(11,2,3,0),(12,2,4,0),(13,2,5,0),(14,2,6,0),(15,2,7,0),(16,2,8,0),(17,3,1,0),(18,3,2,1),(19,3,3,0),(20,3,4,1),(21,3,5,1),(22,3,6,0),(23,3,7,0),(24,3,8,0),(25,4,1,0),(26,4,2,0),(27,4,3,0),(28,4,4,0),(29,4,5,0),(30,4,6,0),(31,4,7,0),(32,4,8,0),(33,5,1,0),(34,5,2,0),(35,5,3,0),(36,5,4,0),(37,5,5,0),(38,5,6,0),(39,5,7,0),(40,5,8,0),(41,6,1,6),(42,6,2,6),(43,6,3,2),(44,6,4,29),(45,6,5,11),(46,6,6,3),(47,6,7,15),(48,6,8,2),(49,7,1,0),(50,7,2,0),(51,7,3,0),(52,7,4,0),(53,7,5,1),(54,7,6,0),(55,7,7,0),(56,7,8,0),(57,8,1,0),(58,8,2,0),(59,8,3,0),(60,8,4,0),(61,8,5,0),(62,8,6,0),(63,8,7,2),(64,8,8,0),(65,9,1,0),(66,9,2,0),(67,9,3,0),(68,9,4,0),(69,9,5,0),(70,9,6,0),(71,9,7,0),(72,9,8,0),(73,10,1,1),(74,10,2,0),(75,10,3,0),(76,10,4,5),(77,10,5,4),(78,10,6,1),(79,10,7,5),(80,10,8,0),(81,11,1,1),(82,11,2,0),(83,11,3,0),(84,11,4,0),(85,11,5,1),(86,11,6,0),(87,11,7,0),(88,11,8,0),(89,12,1,0),(90,12,2,0),(91,12,3,0),(92,12,4,0),(93,12,5,0),(94,12,6,0),(95,12,7,0),(96,12,8,0),(97,13,1,4),(98,13,2,3),(99,13,3,0),(100,13,4,1),(101,13,5,5),(102,13,6,0),(103,13,7,0),(104,13,8,0),(105,14,1,2),(106,14,2,2),(107,14,3,0),(108,14,4,14),(109,14,5,3),(110,14,6,2),(111,14,7,16),(112,14,8,2),(113,15,1,0),(114,15,2,0),(115,15,3,0),(116,15,4,0),(117,15,5,0),(118,15,6,0),(119,15,7,0),(120,15,8,0),(121,16,1,0),(122,16,2,0),(123,16,3,0),(124,16,4,0),(125,16,5,0),(126,16,6,0),(127,16,7,0),(128,16,8,0),(129,17,1,0),(130,17,2,0),(131,17,3,0),(132,17,4,2),(133,17,5,2),(134,17,6,0),(135,17,7,2),(136,17,8,0),(137,18,1,0),(138,18,2,2),(139,18,3,0),(140,18,4,2),(141,18,5,2),(142,18,6,0),(143,18,7,2),(144,18,8,0),(145,19,1,0),(146,19,2,0),(147,19,3,0),(148,19,4,0),(149,19,5,0),(150,19,6,0),(151,19,7,0),(152,19,8,0),(153,20,1,9),(154,20,2,9),(155,20,3,3),(156,20,4,9),(157,20,5,6),(158,20,6,1),(159,20,7,2),(160,20,8,0),(161,21,1,1),(162,21,2,1),(163,21,3,1),(164,21,4,37),(165,21,5,15),(166,21,6,1),(167,21,7,11),(168,21,8,5),(169,22,1,0),(170,22,2,5),(171,22,3,0),(172,22,4,4),(173,22,5,2),(174,22,6,0),(175,22,7,1),(176,22,8,0),(177,23,1,3),(178,23,2,0),(179,23,3,2),(180,23,4,12),(181,23,5,2),(182,23,6,0),(183,23,7,3),(184,23,8,0),(185,24,1,0),(186,24,2,0),(187,24,3,0),(188,24,4,0),(189,24,5,0),(190,24,6,0),(191,24,7,0),(192,24,8,0),(193,25,1,0),(194,25,2,0),(195,25,3,0),(196,25,4,0),(197,25,5,0),(198,25,6,0),(199,25,7,1),(200,25,8,0),(201,26,1,0),(202,26,2,0),(203,26,3,0),(204,26,4,0),(205,26,5,1),(206,26,6,0),(207,26,7,0),(208,26,8,0),(209,27,1,0),(210,27,2,0),(211,27,3,0),(212,27,4,0),(213,27,5,0),(214,27,6,0),(215,27,7,0),(216,27,8,0),(217,28,1,0),(218,28,2,0),(219,28,3,0),(220,28,4,10),(221,28,5,1),(222,28,6,1),(223,28,7,4),(224,28,8,0);
+INSERT INTO `consagraciones_equipo` (`equipo`, `competencia`, `cantidad`) VALUES (1,1,0),(1,2,0),(1,3,0),(1,4,3),(1,5,0),(1,6,0),(1,7,2),(1,8,0),(2,1,0),(2,2,0),(2,3,0),(2,4,0),(2,5,0),(2,6,0),(2,7,0),(2,8,0),(3,1,0),(3,2,1),(3,3,0),(3,4,1),(3,5,1),(3,6,0),(3,7,0),(3,8,0),(4,1,0),(4,2,0),(4,3,0),(4,4,0),(4,5,0),(4,6,0),(4,7,0),(4,8,0),(5,1,0),(5,2,0),(5,3,0),(5,4,0),(5,5,0),(5,6,0),(5,7,0),(5,8,0),(6,1,6),(6,2,6),(6,3,2),(6,4,29),(6,5,11),(6,6,3),(6,7,15),(6,8,2),(7,1,0),(7,2,0),(7,3,0),(7,4,0),(7,5,1),(7,6,0),(7,7,0),(7,8,0),(8,1,0),(8,2,0),(8,3,0),(8,4,0),(8,5,0),(8,6,0),(8,7,2),(8,8,0),(9,1,0),(9,2,0),(9,3,0),(9,4,0),(9,5,0),(9,6,0),(9,7,0),(9,8,0),(10,1,1),(10,2,0),(10,3,0),(10,4,5),(10,5,4),(10,6,1),(10,7,5),(10,8,0),(11,1,1),(11,2,0),(11,3,0),(11,4,0),(11,5,1),(11,6,0),(11,7,0),(11,8,0),(12,1,0),(12,2,0),(12,3,0),(12,4,0),(12,5,0),(12,6,0),(12,7,0),(12,8,0),(13,1,4),(13,2,3),(13,3,0),(13,4,1),(13,5,5),(13,6,0),(13,7,0),(13,8,0),(14,1,2),(14,2,2),(14,3,0),(14,4,14),(14,5,3),(14,6,2),(14,7,16),(14,8,2),(15,1,0),(15,2,0),(15,3,0),(15,4,0),(15,5,0),(15,6,0),(15,7,0),(15,8,0),(16,1,0),(16,2,0),(16,3,0),(16,4,0),(16,5,0),(16,6,0),(16,7,0),(16,8,0),(17,1,0),(17,2,0),(17,3,0),(17,4,2),(17,5,2),(17,6,0),(17,7,2),(17,8,0),(18,1,0),(18,2,2),(18,3,0),(18,4,2),(18,5,2),(18,6,0),(18,7,2),(18,8,0),(19,1,0),(19,2,0),(19,3,0),(19,4,0),(19,5,0),(19,6,0),(19,7,0),(19,8,0),(20,1,9),(20,2,9),(20,3,3),(20,4,9),(20,5,6),(20,6,1),(20,7,2),(20,8,0),(21,1,1),(21,2,1),(21,3,1),(21,4,37),(21,5,15),(21,6,1),(21,7,11),(21,8,5),(22,1,0),(22,2,5),(22,3,0),(22,4,4),(22,5,2),(22,6,0),(22,7,1),(22,8,0),(23,1,3),(23,2,0),(23,3,2),(23,4,12),(23,5,2),(23,6,0),(23,7,3),(23,8,0),(24,1,0),(24,2,0),(24,3,0),(24,4,0),(24,5,0),(24,6,0),(24,7,0),(24,8,0),(25,1,0),(25,2,0),(25,3,0),(25,4,0),(25,5,0),(25,6,0),(25,7,1),(25,8,0),(26,1,0),(26,2,0),(26,3,0),(26,4,0),(26,5,1),(26,6,0),(26,7,0),(26,8,0),(27,1,0),(27,2,0),(27,3,0),(27,4,0),(27,5,0),(27,6,0),(27,7,0),(27,8,0),(28,1,0),(28,2,0),(28,3,0),(28,4,10),(28,5,1),(28,6,1),(28,7,4),(28,8,0);
 /*!40000 ALTER TABLE `consagraciones_equipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +143,7 @@ DROP TABLE IF EXISTS `equipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipo` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -146,7 +155,35 @@ CREATE TABLE `equipo` (
 
 LOCK TABLES `equipo` WRITE;
 /*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
-INSERT INTO `equipo` VALUES (1,'Argentinos Juniors'),(2,'Atlético Tucumán'),(3,'Banfield'),(4,'Barracas Central'),(5,'Belgrano Córdoba'),(6,'Boca'),(7,'Central Córdoba (Rosario)'),(8,'Defensa y Justicia'),(9,'Deportivo Riestra'),(10,'Estudiantes de La Plata'),(11,'Gimnasia y Esgrima de La Plata'),(12,'Godoy Cruz'),(13,'Huracán'),(14,'Independiente'),(15,'Independiente Rivadavia'),(16,'Instituto'),(17,'Lanús'),(18,'Newell\'s'),(19,'Platense'),(20,'Racing'),(21,'River'),(22,'Rosario Central'),(23,'San Lorenzo'),(24,'Sarmiento'),(25,'Talleres'),(26,'Tigre'),(27,'Unión'),(28,'Vélez');
+INSERT INTO `equipo` (`nombre`) VALUES
+('Argentinos Juniors'),
+('Atlético Tucumán'),
+('Banfield'),
+('Barracas Central'),
+('Belgrano Córdoba'),
+('Boca'),
+('Central Córdoba (Rosario)'),
+('Defensa y Justicia'),
+('Deportivo Riestra'),
+('Estudiantes de La Plata'),
+('Gimnasia y Esgrima de La Plata'),
+('Godoy Cruz'),
+('Huracán'),
+('Independiente'),
+('Independiente Rivadavia'),
+('Instituto'),
+('Lanús'),
+('Newell''s'),
+('Platense'),
+('Racing'),
+('River'),
+('Rosario Central'),
+('San Lorenzo'),
+('Sarmiento'),
+('Talleres'),
+('Tigre'),
+('Unión'),
+('Vélez');
 /*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +195,7 @@ DROP TABLE IF EXISTS `era_tipo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `era_tipo` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -170,7 +207,7 @@ CREATE TABLE `era_tipo` (
 
 LOCK TABLES `era_tipo` WRITE;
 /*!40000 ALTER TABLE `era_tipo` DISABLE KEYS */;
-INSERT INTO `era_tipo` VALUES (1,'Amateur'),(2,'Profesional');
+INSERT INTO `era_tipo` (`nombre`) VALUES ('Amateur'), ('Profesional');
 /*!40000 ALTER TABLE `era_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,14 +219,14 @@ DROP TABLE IF EXISTS `hinchas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hinchas` (
-  `id` int NOT NULL,
-  `puesto` int DEFAULT NULL,
-  `equipo` varchar(100) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `equipo` int DEFAULT NULL,
   `escudo` varchar(100) DEFAULT NULL,
-  `copas` int DEFAULT NULL,
   `afiliados` int DEFAULT NULL,
   `sedes` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `equipo` (`equipo`),
+  CONSTRAINT `hinchas_ibfk_1` FOREIGN KEY (`equipo`) REFERENCES `equipo` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -199,7 +236,18 @@ CREATE TABLE `hinchas` (
 
 LOCK TABLES `hinchas` WRITE;
 /*!40000 ALTER TABLE `hinchas` DISABLE KEYS */;
-INSERT INTO `hinchas` VALUES (1,1,'River Plate','rv.png',50,100000,95),(2,2,'Boca Juniors','bj.png',40,95000,50),(3,3,'Belgrano de Córdoba','cabc.png',20,90000,40),(4,4,'Independiente','cai.png',29,15000,97),(5,5,'San Lorenzo','casla.png',23,55000,20),(6,6,'Estudiantes de la Plata','edlp.png',14,88000,20),(7,7,'Huracán','hur.png',14,56000,20),(8,8,'Lanús','lan.png',12,45000,20),(9,9,'Racing Club','rac.png',32,54000,20),(10,10,'Rosario Central','rc.png',26,65000,20),(11,11,'Velez Sarsfield','vs.png',14,14000,20);
+INSERT INTO `hinchas` (`equipo`, `escudo`, `afiliados`, `sedes`) VALUES
+(21, 'rv.png', 100000, 95),
+(6, 'bj.png', 95000, 50),
+(5, 'cabc.png', 90000, 40),
+(14, 'cai.png', 15000, 97),
+(23, 'casla.png', 55000, 20),
+(10, 'edlp.png', 88000, 20),
+(13, 'hur.png', 56000, 20),
+(17, 'lan.png', 45000, 20),
+(20, 'rac.png', 54000, 20),
+(22, 'rc.png', 65000, 20),
+(28, 'vs.png', 14000, 20);
 /*!40000 ALTER TABLE `hinchas` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -29,8 +29,9 @@
                     <label for="eraDropdown" class="form-label">Era:</label>
                     <select class="form-select" id="eraDropdown">
                         <option value="0">Todos</option>
-                        <option value="1">Amateur</option>
-                        <option value="2">Profesional</option>
+                        {% for era in eras %}
+                            <option value="{{ era[0] }}">{{ era[1] }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="invisible-divider-4"></div>
@@ -38,8 +39,9 @@
                     <label for="ambitoDropdown" class="form-label">Ámbito:</label>
                     <select class="form-select" id="ambitoDropdown">
                         <option value="0">Todos</option>
-                        <option value="1">Nacional</option>
-                        <option value="2">Internacional</option>
+                        {% for ambito in ambitos %}
+                            <option value="{{ ambito[0] }}">{{ ambito[1] }}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="invisible-divider-4"></div>
@@ -47,15 +49,16 @@
                     <label for="competenciaTipoDropdown" class="form-label">Tipo de Competencia:</label>
                     <select class="form-select" id="competenciaTipoDropdown">
                         <option value="0">Todos</option>
-                        <option value="1">Torneo</option>
-                        <option value="2">Copa</option>
+                        {% for tipo in tiposCompetencia %}
+                            <option value="{{ tipo[0] }}">{{ tipo[1] }}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
             <div class="invisible-divider-3"></div>
             <div class="row">
                 <div class="col-md-4 offset-md-4">
-                    <button class="btn btn-primary w-100" id="btnFiltrar">Filtrar</button>
+                    <button class="btn btn-primary w-100 btnAfaLens" id="btnFiltrar">Filtrar</button>
 
                     <div class="modal d-none" id="loadingModal" tabindex="-1" role="dialog">
                         <div class="invisible-divider-3"></div>

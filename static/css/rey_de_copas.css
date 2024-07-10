@@ -66,8 +66,7 @@ canvas {
 }
 
 .table tbody tr:nth-child(-n+5) {
-    background-color: #00ff87;
-    color: #5d3c81;
+    background-color: #853ad4;
     font-weight: bold;
 }
   
@@ -80,7 +79,7 @@ canvas {
     font-size: larger;
 }
 
-#btnFiltrar {
+.btnAfaLens {
     background-color: #00ff87;
     border-color: #05f3ff;
     color: #5d3c81;

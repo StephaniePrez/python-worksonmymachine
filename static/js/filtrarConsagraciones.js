@@ -36,12 +36,20 @@ function actualizarTabla(data) {
     const tbody = tabla.querySelector('tbody');
     tbody.innerHTML = '';
 
-    data.forEach(item => {
+    data.forEach((item, index) => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${item.equipo}</td>
-            <td>${item.cantidad}</td>
-        `;
+        if (index === 0) {  // Primer elemento
+            tr.classList.add('fila-destacada');
+            tr.innerHTML = `
+                <td>👑 ${item.equipo}</td>
+                <td>${item.cantidad}</td>
+            `;
+        } else {
+            tr.innerHTML = `
+                <td>${item.equipo}</td>
+                <td>${item.cantidad}</td>
+            `;
+        }
         tbody.appendChild(tr);
     });
 

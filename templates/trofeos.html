@@ -25,23 +25,21 @@
                         <tr class="align-middle">
                             <th>Puesto</th>
                             <th>Equipo</th>
-                            <th>Copas</th>
                             <th>Afiliados</th>
                             <th>Sedes</th>
                         </tr>
                     </thead>
                     <tbody class="table-hover text-center" id="userDetails">
                         {% for equipo in equipos %}
-                        <tr class="align-middle">
-                            <td>{{ equipo[1] }}</td>
-                            <td>
-                                <img src="{{url_for('static',filename='assets/escudos/' + equipo[3])}}"
-                                    alt="Escudo de {{ equipo[2] }}" class="escudo" />
-                            </td>
-                            <td>{{ equipo[4] }}</td>
-                            <td>{{ equipo[5] }}</td>
-                            <td>{{ equipo[6] }}</td>
-                        </tr>
+                            <tr class="align-middle">
+                                <td>{{ loop.index }}</td>
+                                <td>
+                                    <img src="{{url_for('static',filename='assets/escudos/' + equipo[2])}}"
+                                        alt="Escudo de {{ equipo[2] }}" class="escudo" />
+                                </td>
+                                <td>{{ equipo[3] }}</td>
+                                <td>{{ equipo[4] }}</td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>

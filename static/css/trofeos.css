@@ -22,11 +22,11 @@
 }
 
 th {
-    background-color: #05f3ff !important;
-    color:black !important;
+    background-color: #05f3ff;
+    color:black;
 }
 
 td {
-    background-color: rgba(0, 0, 0, 0.144) !important;
-    color: #00ff87 !important;
+    background-color: rgba(0, 0, 0, 0.144);
+    color: #00ff87;
 }
